@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import path from "path";
 
-import authRoutes from "../backend/routes/auth.routes.js";
-import messageRoutes from "../backend/routes/message.routes.js";
-import usersRoutes from "../backend/routes/users.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import usersRoutes from "./routes/users.routes.js";
 
-import connectToMongoDB from "./db/connectToMongoDB.js";
+import mongoDB from "./database/mongoDB.js"
 import { app, server } from "./socket/socket.js";
 
 const PORT = process.env.PORT;
@@ -30,6 +30,6 @@ app.get("*", (req, res) => {
 });
 
 server.listen(PORT, () => {
-  connectToMongoDB();
+  mongoDB();
   console.log(`Server started on port ${PORT}`);
 });
